@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "Camera/CameraComponent.h"
 #include "PlayerChar.generated.h"
 
 UCLASS()
@@ -12,13 +13,18 @@ class LSD24_API APlayerChar : public ACharacter
 	GENERATED_BODY()
 
 protected:
-	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+	
+	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "Player")
+	UCameraComponent* cameraComponent{};
 
-public:	
+public:
 	APlayerChar();
 	virtual void Tick(float DeltaTime) override;
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+	UFUNCTION(BlueprintCallable, Category = "Utility", meta = (ReturnDisplayName = "Hit Actor"))
+	AActor* RaycastForward(float range);
 	
 	UFUNCTION(BlueprintCallable, Category = "Player")
 	void Move(float xValue, float yValue);

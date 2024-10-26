@@ -8,7 +8,9 @@ APlayerChar::APlayerChar()
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-
+	
+	cameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
+	cameraComponent->SetupAttachment(RootComponent);
 }
 
 // Called when the game starts or when spawned
@@ -16,6 +18,28 @@ void APlayerChar::BeginPlay()
 {
 	Super::BeginPlay();
 	
+}
+
+AActor* APlayerChar::RaycastForward(float range)
+{
+	FHitResult hit{};
+	FVector start = cameraComponent->GetComponentLocation();
+	FVector end = start + (cameraComponent->GetForwardVector() * range);
+
+	FCollisionQueryParams params(FName(TEXT("RaycastTrace")), true, this);
+	params.bReturnPhysicalMaterial = false;
+	params.AddIgnoredActor(this);
+
+	bool collision = ActorLineTraceSingle(hit, start, end, ECollisionChannel::ECC_WorldStatic, params);
+
+	if (collision)
+	{
+		return hit.GetActor();
+	}
+	else
+	{
+		return nullptr;
+	}
 }
 
 // Called every frame
