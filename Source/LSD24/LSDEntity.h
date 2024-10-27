@@ -14,10 +14,9 @@ class LSD24_API ALSDEntity : public AActor, public IIInteractable
 
 protected:
 	virtual void BeginPlay() override;
-	virtual void Interaction();
 
 public:	
 	ALSDEntity();
 	virtual void Tick(float DeltaTime) override;
-
+	virtual void Interaction_Implementation() override;
 };

@@ -18,15 +18,20 @@ void ALSDEntity::BeginPlay()
 	
 }
 
-void ALSDEntity::Interaction()
-{
-	UE_LOG(LogTemp, Display, TEXT("No derived interaction found, defaulted to base."));
-}
+//void ALSDEntity::Interaction()
+//{
+//	UE_LOG(LogTemp, Display, TEXT("No derived interaction found, defaulted to base."));
+//}
 
 // Called every frame
 void ALSDEntity::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+}
+
+void ALSDEntity::Interaction_Implementation()
+{
+	UE_LOG(LogTemp, Display, TEXT("No derived interaction found, defaulted to base."));
 }
 

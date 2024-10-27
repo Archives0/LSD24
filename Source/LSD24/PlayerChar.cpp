@@ -2,6 +2,7 @@
 
 
 #include "PlayerChar.h"
+#include "LSDEntity.h"
 
 // Sets default values
 APlayerChar::APlayerChar()
@@ -66,5 +67,20 @@ void APlayerChar::MouseLook(float xValue, float yValue)
 {
 	AddControllerYawInput(xValue);
 	AddControllerPitchInput(-yValue);
+}
+
+void APlayerChar::Interact()
+{
+	AActor* hitActor = RaycastForward(400);
+
+	if (hitActor)
+	{
+		ALSDEntity* entity = Cast<ALSDEntity>(hitActor);
+
+		if (entity)
+		{
+			entity->Interaction();
+		}
+	}
 }
 

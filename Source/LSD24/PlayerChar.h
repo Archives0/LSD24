@@ -26,9 +26,12 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Utility", meta = (ReturnDisplayName = "Hit Actor"))
 	AActor* RaycastForward(float range);
 	
-	UFUNCTION(BlueprintCallable, Category = "Player")
+	UFUNCTION(BlueprintCallable, Category = "Gameplay/Movement")
 	void Move(float xValue, float yValue);
 
-	UFUNCTION(BlueprintCallable, Category = "Player")
+	UFUNCTION(BlueprintCallable, Category = "Gameplay/Movement")
 	void MouseLook(float xValue, float yValue);
+
+	UFUNCTION(BlueprintCallable, Category = "Gameplay/Actions")
+	void Interact();
 };
