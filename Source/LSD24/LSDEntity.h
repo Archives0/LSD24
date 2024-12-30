@@ -18,5 +18,6 @@ protected:
 public:	
 	ALSDEntity();
 	virtual void Tick(float DeltaTime) override;
-	virtual void Interaction_Implementation() override;
+	// virtual void Interaction_Implementation(FHitResult hit) override;
+	virtual void Interaction_Implementation(FHitResult hit) override;
 };

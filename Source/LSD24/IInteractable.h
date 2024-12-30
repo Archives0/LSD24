@@ -25,5 +25,5 @@ public:
 	// virtual void Interaction() = 0;
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interaction")
-	void Interaction();
+	void Interaction(FHitResult hit);
 };

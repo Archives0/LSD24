@@ -30,7 +30,7 @@ void ALSDEntity::Tick(float DeltaTime)
 
 }
 
-void ALSDEntity::Interaction_Implementation()
+void ALSDEntity::Interaction_Implementation(FHitResult hit)
 {
 	UE_LOG(LogTemp, Display, TEXT("No derived interaction found, defaulted to base."));
 }

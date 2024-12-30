@@ -24,7 +24,7 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	UFUNCTION(BlueprintCallable, Category = "Utility", meta = (ReturnDisplayName = "Hit Actor"))
-	AActor* RaycastForward(float range);
+	FHitResult RaycastForward(float range);
 	
 	UFUNCTION(BlueprintCallable, Category = "Gameplay/Movement")
 	void Move(float xValue, float yValue);

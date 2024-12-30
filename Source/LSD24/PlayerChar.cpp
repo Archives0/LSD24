@@ -21,7 +21,7 @@ void APlayerChar::BeginPlay()
 	
 }
 
-AActor* APlayerChar::RaycastForward(float range)
+FHitResult APlayerChar::RaycastForward(float range)
 {
 	FHitResult hit{};
 	FVector start = cameraComponent->GetComponentLocation();
@@ -31,15 +31,19 @@ AActor* APlayerChar::RaycastForward(float range)
 	params.bReturnPhysicalMaterial = false;
 	params.AddIgnoredActor(this);
 
-	bool collision = ActorLineTraceSingle(hit, start, end, ECollisionChannel::ECC_WorldStatic, params);
+	bool collision = GetWorld()->LineTraceSingleByChannel(hit, start, end, ECollisionChannel::ECC_Visibility, params);
+	DrawDebugLine(GetWorld(), start, end, FColor::Green, false, 1.0f, 0, 2.0f);
 
 	if (collision)
 	{
-		return hit.GetActor();
+		UE_LOG(LogTemp, Display, TEXT("Hit registered"));
+		DrawDebugPoint(GetWorld(), hit.Location, 10.0f, FColor::Red, false, 1.0f);
+		return hit;
 	}
 	else
 	{
-		return nullptr;
+		UE_LOG(LogTemp, Error, TEXT("No hit registered"));
+		return FHitResult();
 	}
 }
 
@@ -71,16 +75,20 @@ void APlayerChar::MouseLook(float xValue, float yValue)
 
 void APlayerChar::Interact()
 {
-	AActor* hitActor = RaycastForward(400);
+	FHitResult hitResult = RaycastForward(400);
+	ALSDEntity* entity = Cast<ALSDEntity>(hitResult.GetActor());
 
-	if (hitActor)
+	if (entity)
 	{
-		ALSDEntity* entity = Cast<ALSDEntity>(hitActor);
-
-		if (entity)
+		// entity->Interaction_Implementation(hitResult);
+		if (entity->Implements<UIInteractable>())
 		{
-			entity->Interaction();
+			IIInteractable::Execute_Interaction(entity, hitResult);
+			UE_LOG(LogTemp, Display, TEXT("Interaction confirmed"));
 		}
 	}
+	else
+	{
+		UE_LOG(LogTemp, Error, TEXT("Casting failed"));
+	}
 }
-
