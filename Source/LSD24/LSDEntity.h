@@ -14,10 +14,16 @@ class LSD24_API ALSDEntity : public AActor, public IIInteractable
 
 protected:
 	virtual void BeginPlay() override;
+	UStaticMeshComponent* StaticMeshComponent{};
 
 public:	
 	ALSDEntity();
 	virtual void Tick(float DeltaTime) override;
 	// virtual void Interaction_Implementation(FHitResult hit) override;
 	virtual void Interaction_Implementation(FHitResult hit) override;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Entity")
+	UStaticMesh* Mesh{};
+
+	virtual void OnConstruction(const FTransform& Transform) override;
 };

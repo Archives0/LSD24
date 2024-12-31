@@ -32,12 +32,12 @@ FHitResult APlayerChar::RaycastForward(float range)
 	params.AddIgnoredActor(this);
 
 	bool collision = GetWorld()->LineTraceSingleByChannel(hit, start, end, ECollisionChannel::ECC_Visibility, params);
-	DrawDebugLine(GetWorld(), start, end, FColor::Green, false, 1.0f, 0, 2.0f);
+	// DrawDebugLine(GetWorld(), start, end, FColor::Green, false, 1.0f, 0, 2.0f);
 
 	if (collision)
 	{
 		UE_LOG(LogTemp, Display, TEXT("Hit registered"));
-		DrawDebugPoint(GetWorld(), hit.Location, 10.0f, FColor::Red, false, 1.0f);
+		// DrawDebugPoint(GetWorld(), hit.Location, 10.0f, FColor::Red, false, 1.0f);
 		return hit;
 	}
 	else
