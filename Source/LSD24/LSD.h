@@ -17,6 +17,15 @@ public:
 	TArray<FString> textOptions{};
 };
 
+USTRUCT(BlueprintType)
+struct FItem
+{
+	GENERATED_BODY()
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Item")
+	FString itemName{};
+};
+
 UENUM(BlueprintType)
 enum class EGameStage : uint8
 {
@@ -39,4 +48,7 @@ public:
 
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "Global Game Values")
 	EGameStage storyStage{};
+
+	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "Global Game Values")
+	TArray<FItem> playerItems{};
 };
