@@ -18,7 +18,7 @@ public:
 };
 
 USTRUCT(BlueprintType)
-struct FItem
+struct FLSDItem
 {
 	GENERATED_BODY()
 
@@ -50,5 +50,5 @@ public:
 	EGameStage storyStage{};
 
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "Global Game Values")
-	TArray<FItem> playerItems{};
+	TArray<FLSDItem> playerItems{};
 };
