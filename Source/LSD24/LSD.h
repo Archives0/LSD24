@@ -26,6 +26,27 @@ struct FLSDItem
 	FString itemName{};
 };
 
+USTRUCT(BlueprintType)
+struct FLSDQuest
+{
+	GENERATED_BODY()
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Quest")
+	FString questName{};
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Quest")
+	FString objective{};
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Quest")
+	bool complete{};
+
+	bool operator==(const FLSDQuest& Other) const
+	{
+		// Customize equality logic, e.g., comparing by questName
+		return questName == Other.questName;
+	}
+};
+
 UENUM(BlueprintType)
 enum class EGameStage : uint8
 {
@@ -51,4 +72,16 @@ public:
 
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "Global Game Values")
 	TArray<FLSDItem> playerItems{};
+
+	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "Global Game Values")
+	TArray<FLSDQuest> questLog{};
+
+	UFUNCTION(BlueprintCallable, Category = "Global Game Values")
+	void ChangeStoryStage(EGameStage newStage);
+
+	UFUNCTION(BlueprintCallable, Category = "Global Game Values")
+	void AddNewQuest(FLSDQuest newQuest);
+
+	UFUNCTION(BlueprintCallable, Category = "Global Game Values")
+	void CompleteQuest(FLSDQuest newQuest);
 };
