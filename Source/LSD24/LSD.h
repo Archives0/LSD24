@@ -42,7 +42,7 @@ struct FLSDQuest
 
 	bool operator==(const FLSDQuest& Other) const
 	{
-		// Customize equality logic, e.g., comparing by questName
+		// Compare on quest name.
 		return questName == Other.questName;
 	}
 };
@@ -75,6 +75,9 @@ public:
 
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "Global Game Values")
 	TArray<FLSDQuest> questLog{};
+
+	UFUNCTION(BlueprintCallable, Category = "Global Game Values")
+	void AddToInventory(FLSDItem newItem);
 
 	UFUNCTION(BlueprintCallable, Category = "Global Game Values")
 	void ChangeStoryStage(EGameStage newStage);

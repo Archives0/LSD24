@@ -3,6 +3,11 @@
 
 #include "LSD.h"
 
+void ULSD::AddToInventory(FLSDItem newItem)
+{
+	playerItems.Add(newItem);
+}
+
 void ULSD::ChangeStoryStage(EGameStage newStage)
 {
 	storyStage = newStage;
