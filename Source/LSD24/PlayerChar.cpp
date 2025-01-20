@@ -92,3 +92,13 @@ void APlayerChar::Interact()
 		UE_LOG(LogTemp, Error, TEXT("Casting failed"));
 	}
 }
+
+void APlayerChar::FadeIn_Implementation()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Fade in called with no blueprint implementation."));
+}
+
+void APlayerChar::FadeOut_Implementation()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Fade out called with no blueprint implementation."));
+}

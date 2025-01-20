@@ -34,4 +34,12 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Gameplay/Actions")
 	void Interact();
+
+	// Blueprint Functions.
+
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Visual Effects")
+	void FadeIn();
+
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Visual Effects")
+	void FadeOut();
 };
